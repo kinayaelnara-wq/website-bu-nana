@@ -1,64 +1,10 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Warung Bu Nana</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
-</head>
-<body>
-
-  <header class="header">
-    <h1>🍽️ Warung Bu Nana</h1>
-    <p>Masakan enak, harga bersahabat!</p>
-  </header>
-
-  <nav class="navbar">
-    <a href="#beranda">Beranda</a>
-    <a href="#makanan-section">Makanan</a>
-    <a href="#minuman-section">Minuman</a>
-    <a href="#pesanan">Pesanan</a>
-  </nav>
-
-  <section class="hero" id="beranda">
-    <h2>Selamat Datang di Warung Bu Nana</h2>
-    <p>Nikmati makanan dan minuman favoritmu.</p>
-    <a href="#makanan-section" class="tombol-utama">Lihat Menu</a>
-  </section>
-
-  <main>
-    <section class="bagian-menu" id="makanan-section">
-      <h2>Menu Makanan</h2>
-      <p class="deskripsi">Pilihan makanan lezat untukmu.</p>
-      <div id="makanan" class="menu-container"></div>
-    </section>
-
-    <section class="bagian-menu" id="minuman-section">
-      <h2>Menu Minuman</h2>
-      <p class="deskripsi">Minuman segar untuk menemani makanmu.</p>
-      <div id="minuman" class="menu-container"></div>
-    </section>
-
-    <section class="bagian-pesanan" id="pesanan">
-      <h2>🛒 Keranjang Pesanan</h2>
-      <p>Jumlah barang: <span id="jumlah">0</span></p>
-      <div id="daftar-pesanan">Belum ada pesanan.</div>
-      <h3>Total: <span id="total">Rp0</span></h3>
-      <button id="tombol-pesan" class="tombol-pesan">
-        Buat Pesanan
-      </button>
-    </section>
-
-    <section class="tentang">
-      <h2>Tentang Warung Bu Nana</h2>
-      <p>Menyediakan makanan dan minuman dengan harga terjangkau.</p>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <p>&copy; 2026 Warung Bu Nana</p>
-  </footer>
-
-</body>
-</html>
+<div class="menu-item">
+    <!-- Ganti bagian emoji dengan tag img ini -->
+    <img src="images/lotek.jpg" alt="Lotek Bu Nana" class="menu-img">
+    
+    <div class="menu-info">
+        <h3>Lotek Spesial</h3>
+        <p class="price">Rp12.000</p>
+        <button onclick="tambahPesanan('Lotek Spesial', 12000)">+ Tambah</button>
+    </div>
+</div>
