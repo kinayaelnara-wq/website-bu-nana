@@ -1,13 +1,157 @@
-header {
-    text-align: center;
-    background-color: #4CAF50;
-    color: white;
-    padding: 20px;
+* {
+  box-sizing: border-box;
 }
 
-#infoMeja {
-    background: #ffffff22;
-    display: inline-block;
-    padding: 5px 15px;
-    border-radius: 20px;
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fffaf3;
+  color: #4b2818;
+}
+
+.navbar {
+  background: #fff6eb;
+  padding: 16px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  border-bottom: 1px solid #ead8c5;
+}
+
+.navbar h1 {
+  font-size: 22px;
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #4b2818;
+  font-weight: bold;
+}
+
+.hero {
+  padding: 35px 8%;
+  color: white;
+  background: linear-gradient(120deg, #4b2818, #a66a45);
+}
+
+.hero h2 {
+  font-size: 36px;
+  margin: 0 0 10px;
+}
+
+.hero p {
+  max-width: 550px;
+  line-height: 1.6;
+}
+
+main {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+main > h2 {
+  margin-top: 10px;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.card {
+  border: 1px solid #e6d7c8;
+  border-radius: 10px;
+  padding: 12px;
+  background: #fffdf9;
+}
+
+.card .gambar {
+  width: 100%;
+  height: 125px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #f2e4d5;
+}
+
+.card h3 {
+  margin: 12px 0 5px;
+}
+
+.harga {
+  margin: 5px 0 10px;
+}
+
+button {
+  background: #80482e;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.card button {
+  width: 100%;
+}
+
+button:hover {
+  background: #5c301e;
+}
+
+.cart, .about {
+  background: #f4e5d4;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 25px 0;
+}
+
+#daftar-pesanan p {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+footer {
+  text-align: center;
+  background: #80482e;
+  color: white;
+  padding: 18px;
+}
+
+@media (max-width: 800px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .navbar h1 {
+    font-size: 18px;
+  }
+
+  .hero h2 {
+    font-size: 28px;
+  }
 }
