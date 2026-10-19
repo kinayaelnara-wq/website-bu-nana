@@ -1,180 +1,153 @@
-// Data Menu Lengkap Bu Nana dengan Icon/Visual
-const makanan = [
-    { nama: "Lotek", harga: 13000, icon: "🥗" },
-    { nama: "Kupat Tahu", harga: 13000, icon: "🍲" },
-    { nama: "Nasi Ayam Geprek", harga: 13000, icon: "🍗" },
-    { nama: "Nasi Goreng", harga: 13000, icon: "🍛" },
-    { nama: "Nasi Telor", harga: 13000, icon: "🍳" },
-    { nama: "IndTel Goreng", harga: 13000, icon: "🍜" },
-    { nama: "IndTel Rebus", harga: 13000, icon: "🍜" },
-    { nama: "Soto", harga: 10000, icon: "🍲" }
+const dataMakanan = [
+  {
+    nama: "Lotek",
+    harga: 4000,
+    gambar: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500"
+  },
+  {
+    nama: "Kupat Tahu",
+    harga: 5000,
+    gambar: "https://images.unsplash.com/photo-1547592180-85f173990554?w=500"
+  },
+  {
+    nama: "Gado-Gado",
+    harga: 5000,
+    gambar: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500"
+  },
+  {
+    nama: "Soto",
+    harga: 10000,
+    gambar: "https://images.unsplash.com/photo-1547592180-85f173990554?w=500"
+  }
 ];
 
-const minuman = [
-    { nama: "Es Teh", harga: 3000, icon: "🧋" },
-    { nama: "LemonTea", harga: 4000, icon: "🍋" },
-    { nama: "Es Jeruk", harga: 4000, icon: "🍊" },
-    { nama: "Nutrisari", harga: 4000, icon: "🧃" },
-    { nama: "Kopi Hitam", harga: 5000, icon: "☕" },
-    { nama: "Gooday", harga: 5000, icon: "🥤" },
-    { nama: "Cocolatos", harga: 5000, icon: "🧋" },
-    { nama: "Milo", harga: 5000, icon: "🥛" },
-    { nama: "Bengbeng", harga: 5000, icon: "🍫" },
-    { nama: "Teh Tarik", harga: 5000, icon: "🧋" },
-    { nama: "JosSua", harga: 7000, icon: "⚡" },
-    { nama: "Dancow", harga: 7000, icon: "🍼", isDancow: true }
+const dataMinuman = [
+  {
+    nama: "Es Teh",
+    harga: 3000,
+    gambar: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500"
+  },
+  {
+    nama: "LemonTea",
+    harga: 4000,
+    gambar: "https://images.unsplash.com/photo-1513558161293-cdaf765edfd7?w=500"
+  },
+  {
+    nama: "Soda Gembira",
+    harga: 5000,
+    gambar: "https://images.unsplash.com/photo-1513558161293-cdaf765edfd7?w=500"
+  },
+  {
+    nama: "Es Jeruk",
+    harga: 4000,
+    gambar: "https://images.unsplash.com/photo-1513558161293-cdaf765edfd7?w=500"
+  }
 ];
 
-// Ambil nomor meja dari URL parameter
-const urlParams = new URLSearchParams(window.location.search);
-const nomorMeja = urlParams.get('meja') || 'Tanpa Meja';
+const keranjang = {};
 
-document.addEventListener("DOMContentLoaded", function() {
-    const elMeja = document.getElementById("infoMeja");
-    if (elMeja) {
-        elMeja.innerText = "Nomor Meja: " + nomorMeja;
-    }
-
-    tampilkanMenu(makanan, "menuMakanan");
-    tampilkanMenu(minuman, "menuMinuman");
-});
-
-// Fungsi Tampilkan Menu
-function tampilkanMenu(daftar, idElemen) {
-    const kontainer = document.getElementById(idElemen);
-    if (!kontainer) return;
-
-    kontainer.innerHTML = "";
-    daftar.forEach(function(item) {
-        const card = document.createElement("div");
-        card.className = "menu-card";
-        
-        let extraHTML = "";
-        if (item.isDancow) {
-            extraHTML = '<select id="select-dancow" style="margin: 5px 0; padding: 3px; font-size: 12px;"><option value="Putih">Putih</option><option value="Coklat">Coklat</option></select>';
-        }
-
-        card.innerHTML = '<div class="card-img-box"><span style="font-size: 42px;">' + item.icon + '</span></div>' +
-            '<h4>' + item.nama + '</h4>' +
-            '<p>Rp' + item.harga.toLocaleString('id-ID') + '</p>' +
-            extraHTML +
-            '<button onclick="tambahItem(\'' + item.nama + '\', ' + item.harga + ', ' + (item.isDancow ? 'true' : 'false') + ')">+ Tambah</button>';
-        
-        kontainer.appendChild(card);
-    });
+function rupiah(angka) {
+  return "Rp" + angka.toLocaleString("id-ID");
 }
 
-// Fitur Keranjang Pesanan
-let keranjang = [];
+function tampilkanMenu(data, id) {
+  const tempat = document.getElementById(id);
 
-function tambahItem(namaDasar, harga, isDancow) {
-    let namaFinal = namaDasar;
-    if (isDancow) {
-        const selectRasa = document.getElementById("select-dancow");
-        const rasa = selectRasa ? selectRasa.value : "Putih";
-        namaFinal = "Dancow (" + rasa + ")";
-    }
+  data.forEach(item => {
+    const kartu = document.createElement("div");
+    kartu.className = "card";
 
-    let existing = null;
-    for (let i = 0; i < keranjang.length; i++) {
-        if (keranjang[i].nama === namaFinal) {
-            existing = keranjang[i];
-            break;
-        }
-    }
+    const gambar = document.createElement("img");
+    gambar.className = "gambar";
+    gambar.src = item.gambar;
+    gambar.alt = item.nama;
+    gambar.loading = "lazy";
 
-    if (existing) {
-        existing.jumlah += 1;
-    } else {
-        keranjang.push({ nama: namaFinal, harga: harga, jumlah: 1 });
-    }
-    perbaruiKeranjang();
+    const nama = document.createElement("h3");
+    nama.textContent = item.nama;
+
+    const harga = document.createElement("p");
+    harga.className = "harga";
+    harga.textContent = rupiah(item.harga);
+
+    const tombol = document.createElement("button");
+    tombol.textContent = "+ Tambah";
+    tombol.onclick = () => tambah(item);
+
+    kartu.append(gambar, nama, harga, tombol);
+    tempat.appendChild(kartu);
+  });
 }
 
-function ubahJumlah(index, delta) {
-    keranjang[index].jumlah += delta;
-    if (keranjang[index].jumlah <= 0) {
-        keranjang.splice(index, 1);
-    }
-    perbaruiKeranjang();
+function tambah(item) {
+  if (!keranjang[item.nama]) {
+    keranjang[item.nama] = {
+      harga: item.harga,
+      jumlah: 0
+    };
+  }
+
+  keranjang[item.nama].jumlah++;
+  perbaruiKeranjang();
 }
 
 function perbaruiKeranjang() {
-    const daftarPesanan = document.getElementById("daftarPesanan");
-    const totalEl = document.getElementById("total");
-    
-    if (!daftarPesanan || !totalEl) return;
+  const daftar = document.getElementById("daftar-pesanan");
+  daftar.replaceChildren();
 
-    if (keranjang.length === 0) {
-        daftarPesanan.innerHTML = "Belum ada pesanan.";
-        totalEl.innerText = "0";
-        return;
-    }
+  let total = 0;
+  let jumlahBarang = 0;
 
-    daftarPesanan.innerHTML = "";
-    let total = 0;
+  Object.entries(keranjang).forEach(([nama, item]) => {
+    if (item.jumlah === 0) return;
 
-    keranjang.forEach(function(item, index) {
-        let subtotal = item.harga * item.jumlah;
-        total += subtotal;
+    const subtotal = item.harga * item.jumlah;
+    total += subtotal;
+    jumlahBarang += item.jumlah;
 
-        const div = document.createElement("div");
-        div.style.display = "flex";
-        div.style.justifyContent = "space-between";
-        div.style.alignItems = "center";
-        div.style.margin = "5px 0";
-        div.style.fontSize = "14px";
+    const baris = document.createElement("p");
+    const keterangan = document.createElement("span");
+    keterangan.textContent =
+      ${nama} x ${item.jumlah} = ${rupiah(subtotal)};
 
-        div.innerHTML = '<span>' + (index + 1) + '. ' + item.nama + ' (x' + item.jumlah + ') - Rp' + subtotal.toLocaleString('id-ID') + '</span>' +
-            '<div>' +
-            '<button onclick="ubahJumlah(' + index + ', -1)" style="padding: 2px 6px; margin-right: 3px;">-</button>' +
-            '<button onclick="ubahJumlah(' + index + ', 1)" style="padding: 2px 6px;">+</button>' +
-            '</div>';
-        
-        daftarPesanan.appendChild(div);
-    });
+    const hapus = document.createElement("button");
+    hapus.textContent = "-";
+    hapus.onclick = () => {
+      item.jumlah--;
+      if (item.jumlah === 0) delete keranjang[nama];
+      perbaruiKeranjang();
+    };
 
-    totalEl.innerText = total.toLocaleString('id-ID');
+    baris.append(keterangan, hapus);
+    daftar.appendChild(baris);
+  });
+
+  if (jumlahBarang === 0) {
+    daftar.textContent = "Belum ada pesanan.";
+  }
+
+  document.getElementById("jumlah").textContent = jumlahBarang;
+  document.getElementById("total").textContent = rupiah(total);
 }
 
-function kosongkanKeranjang() {
-    keranjang = [];
-    perbaruiKeranjang();
+function pesan() {
+  if (Object.keys(keranjang).length === 0) {
+    alert("Silakan pilih menu terlebih dahulu!");
+    return;
+  }
+
+  let pesanannya = "Pesanan Bu Nana:\n";
+  let total = 0;
+
+  Object.entries(keranjang).forEach(([nama, item]) => {
+    pesanannya += ${nama} x ${item.jumlah}\n;
+    total += item.harga * item.jumlah;
+  });
+
+  pesanannya += "\nTotal: " + rupiah(total);
+
+  alert(pesanannya);
 }
 
-// Fitur Kirim Pesanan ke WhatsApp Admin (Bu Nana)
-function kirimKeWhatsApp() {
-    if (keranjang.length === 0) {
-        alert("Keranjang masih kosong! Silakan pilih menu terlebih dahulu.");
-        return;
-    }
-
-    let nomorMeja = document.getElementById("nomorMeja") ? document.getElementById("nomorMeja").value : "Tanpa Meja";
-    let inputCatatan = document.getElementById("catatan");
-    let catatan = inputCatatan ? inputCatatan.value : "";
-    let nomorAdmin = "6281230139560"; // Nomor WhatsApp Bu Nana / Admin
-
-    // 1. Menyusun Format Pesan
-    let pesan = "Halo Bu Nana, saya ingin memesan:\n";
-    pesan += "Nomor Meja: " + nomorMeja + "\n\n";
-
-    let total = 0;
-    keranjang.forEach(function(item, index) {
-        let subtotal = item.harga * item.jumlah;
-        total += subtotal;
-        pesan += (index + 1) + ". " + item.nama + " x" + item.jumlah + " = Rp" + subtotal.toLocaleString('id-ID') + "\n";
-    });
-
-    if (catatan) {
-        pesan += "\nCatatan: " + catatan + "\n";
-    }
-
-    pesan += "\nTotal Keseluruhan: Rp" + total.toLocaleString('id-ID') + "\n";
-    pesan += "Mohon segera diproses ya, terima kasih!";
-
-    // 2. Format Link WhatsApp
-    let urlWA = "https://api.whatsapp.com/send?phone=" + nomorAdmin + "&text=" + encodeURIComponent(pesan);
-
-    // 3. Buka WhatsApp
-    window.open(urlWA, '_blank');
-}
+tampilkanMenu(dataMakanan, "makanan");
+tampilkanMenu(dataMinuman, "minuman");
