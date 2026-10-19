@@ -3,52 +3,98 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lotek & Kupat Tahu Bu Nana</title>
+
+  <title>Warung Bu Nana</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<header class="navbar">
-  <h1>🍴 Lotek & Kupat Tahu Bu Nana</h1>
-  <nav>
+  <!-- HEADER -->
+  <header class="header">
+    <h1>🍽️ Warung Bu Nana</h1>
+    <p>Masakan enak, harga bersahabat!</p>
+  </header>
+
+  <!-- MENU NAVIGASI -->
+  <nav class="navbar">
     <a href="#beranda">Beranda</a>
-    <a href="#menu">Menu</a>
+    <a href="#makanan-section">Makanan</a>
+    <a href="#minuman-section">Minuman</a>
+    <a href="#pesanan">Pesanan</a>
     <a href="#tentang">Tentang</a>
-    <a href="#kontak">Kontak</a>
-    <a href="#keranjang">🛒 <span id="jumlah">0</span></a>
   </nav>
-</header>
 
-<section class="hero" id="beranda">
-  <h2>Daftar Menu</h2>
-  <p>Nikmati lezatnya lotek, kupat tahu, dan aneka minuman segar dengan cita rasa khas Bu Nana.</p>
-</section>
-
-<main id="menu">
-  <h2>🍴 Makanan</h2>
-  <div class="menu-grid" id="makanan"></div>
-
-  <h2>🥤 Menu Minuman</h2>
-  <div class="menu-grid" id="minuman"></div>
-
-  <section class="cart" id="keranjang">
-    <h2>🛒 Keranjang Pesanan</h2>
-    <div id="daftar-pesanan">Belum ada pesanan.</div>
-    <h3>Total: <span id="total">Rp0</span></h3>
-    <button onclick="pesan()">Pesan Sekarang</button>
+  <!-- BERANDA -->
+  <section class="hero" id="beranda">
+    <div class="hero-content">
+      <h2>Selamat Datang di Warung Bu Nana</h2>
+      <p>Nikmati makanan dan minuman favoritmu.</p>
+      <a class="tombol-utama" href="#makanan-section">
+        Lihat Menu
+      </a>
+    </div>
   </section>
-</main>
 
-<section class="about" id="tentang">
-  <h2>Tentang Kami</h2>
-  <p>Lotek dan Kupat Tahu Bu Nana menyajikan makanan lezat dengan harga terjangkau.</p>
-</section>
+  <!-- MENU MAKANAN -->
+  <main>
+    <section class="bagian-menu" id="makanan-section">
+      <h2>Menu Makanan</h2>
+      <p class="deskripsi">Pilihan makanan lezat untukmu.</p>
 
-<footer id="kontak">
-  <p>© 2026 Lotek & Kupat Tahu Bu Nana</p>
-  <p>Terima kasih telah berkunjung!</p>
-</footer>
- <script src="script.js"></script>
+      <div id="makanan" class="menu-container"></div>
+    </section>
+
+    <!-- MENU MINUMAN -->
+    <section class="bagian-menu" id="minuman-section">
+      <h2>Menu Minuman</h2>
+      <p class="deskripsi">Minuman segar untuk menemani makanmu.</p>
+
+      <div id="minuman" class="menu-container"></div>
+    </section>
+
+    <!-- KERANJANG -->
+    <section class="bagian-pesanan" id="pesanan">
+      <h2>🛒 Keranjang Pesanan</h2>
+
+      <p>Jumlah barang: <span id="jumlah">0</span></p>
+
+      <div id="daftar-pesanan">
+        Belum ada pesanan.
+      </div>
+
+      <div class="total-harga">
+        Total: <span id="total">Rp0</span>
+      </div>
+
+      <button
+        type="button"
+        class="tombol-pesan"
+        onclick="pesan()"
+      >
+        Buat Pesanan
+      </button>
+    </section>
+
+    <!-- TENTANG -->
+    <section class="tentang" id="tentang">
+      <h2>Tentang Warung Bu Nana</h2>
+      <p>
+        Warung Bu Nana menyediakan berbagai pilihan makanan
+        dan minuman dengan harga terjangkau.
+        Pilih menu favoritmu dan lihat total pesananmu.
+      </p>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2026 Warung Bu Nana. Semua hak dilindungi.</p>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script src="script.js"></script>
+
 </body>
 </html>
-
