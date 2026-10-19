@@ -1,10 +1,111 @@
-<div class="menu-item">
-    <!-- Ganti bagian emoji dengan tag img ini -->
-    <img src="images/lotek.jpg" alt="Lotek Bu Nana" class="menu-img">
-    
-    <div class="menu-info">
-        <h3>Lotek Spesial</h3>
-        <p class="price">Rp12.000</p>
-        <button onclick="tambahPesanan('Lotek Spesial', 12000)">+ Tambah</button>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemesanan - Lotek & Kupat Tahu Bu Nana</title>
+    <!-- Hubungkan ke file CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts untuk tampilan modern -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header Toko -->
+        <div class="header">
+            <h1>Lotek & Kupat Tahu Bu Nana</h1>
+            <p>Silakan pilih menu favoritmu di bawah ini 👇</p>
+        </div>
+
+        <!-- Input Nomor Meja / Keterangan -->
+        <div class="form-group">
+            <label for="nomor-meja">Nomor Meja / Keterangan:</label>
+            <input type="text" id="nomor-meja" placeholder="Contoh: Meja 05 atau Dibungkus">
+        </div>
+
+        <!-- Daftar Menu Makanan & Minuman (Sudah Pakai Gambar Real) -->
+        <div class="menu-list">
+            
+            <!-- Menu 1: Lotek -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1626804475297-41608e074eb1?w=500&auto=format&fit=crop" alt="Lotek Spesial" class="menu-img">
+                <div class="menu-info">
+                    <h3>Lotek Spesial</h3>
+                    <p class="price">Rp12.000</p>
+                    <button onclick="tambahPesanan('Lotek Spesial', 12000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <!-- Menu 2: Kupat Tahu -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&auto=format&fit=crop" alt="Kupat Tahu" class="menu-img">
+                <div class="menu-info">
+                    <h3>Kupat Tahu</h3>
+                    <p class="price">Rp10.000</p>
+                    <button onclick="tambahPesanan('Kupat Tahu', 10000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <!-- Menu 3: Teh Tarik / Es Teh -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500&auto=format&fit=crop" alt="Teh Tarik" class="menu-img">
+                <div class="menu-info">
+                    <h3>Teh Tarik Manis</h3>
+                    <p class="price">Rp5.000</p>
+                    <button onclick="tambahPesanan('Teh Tarik Manis', 5000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <!-- Menu 4: Es Jeruk / Lemon Tea -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=500&auto=format&fit=crop" alt="Es Jeruk" class="menu-img">
+                <div class="menu-info">
+                    <h3>Es Jeruk Segar</h3>
+                    <p class="price">Rp4.000</p>
+                    <button onclick="tambahPesanan('Es Jeruk Segar', 4000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <!-- Menu 5: JosSua / Minuman Spesial -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500&auto=format&fit=crop" alt="JosSua" class="menu-img">
+                <div class="menu-info">
+                    <h3>JosSua (Es Susu Soda)</h3>
+                    <p class="price">Rp6.000</p>
+                    <button onclick="tambahPesanan('JosSua', 6000)">+ Tambah</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bagian Keranjang Pesanan -->
+        <div class="cart-section">
+            <h2>Keranjang Pesanan Anda</h2>
+            <div id="daftar-pesanan" class="cart-items">
+                <p class="empty-cart">Belum ada menu yang dipilih.</p>
+            </div>
+            
+            <div class="cart-total">
+                <span>Total Keseluruhan:</span>
+                <span id="total-harga">Rp0</span>
+            </div>
+        </div>
+
+        <!-- Catatan Tambahan -->
+        <div class="form-group">
+            <label for="catatan">Catatan Pesanan (Opsional):</label>
+            <input type="text" id="catatan" placeholder="Contoh: Jangan pakai seledri, pedas sedang">
+        </div>
+
+        <!-- Tombol Aksi -->
+        <div class="action-buttons">
+            <button class="btn-clear" onclick="kosongkanPesanan()">Kosongkan Pesanan</button>
+            <button class="btn-wa" onclick="kirimKeWhatsApp()">Kirim Pesanan ke WhatsApp 📱</button>
+        </div>
     </div>
-</div>
+
+    <!-- Hubungkan ke file JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
