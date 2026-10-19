@@ -1,71 +1,210 @@
-/* Styling Umum / Tampilan Utama */
+/* Tampilan Dasar Website Modern */
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #f4f7f6;
+    background-color: #f8f9fa;
     margin: 0;
-    padding: 20px;
+    padding: 15px;
+    color: #333;
 }
 
-/* Kotak Container Utama */
 .container {
-    max-width: 480px;
+    max-width: 500px;
     margin: 0 auto;
     background: #ffffff;
     padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-/* Desain Kartu Menu */
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 22px;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.header p {
+    font-size: 14px;
+    color: #7f8c8d;
+    margin: 0;
+}
+
+/* Form Input (Nomor Meja & Catatan) */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #34495e;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #dcdde1;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+    transition: 0.2s;
+}
+
+.form-group input:focus {
+    border-color: #27ae60;
+    box-shadow: 0 0 5px rgba(39, 174, 96, 0.2);
+}
+
+/* Desain Kartu Menu (Menu Cards) */
+.menu-list {
+    margin-bottom: 20px;
+}
+
 .menu-item {
     display: flex;
     align-items: center;
-    background: #fff;
-    border: 1px solid #eee;
+    background: #ffffff;
+    border: 1px solid #f1f2f6;
     padding: 10px;
-    border-radius: 10px;
-    margin-bottom: 12px;
-    transition: 0.3s;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    transition: 0.2s;
 }
 
 .menu-item:hover {
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    border-color: #27ae60;
+    transform: translateY(-2px);
 }
 
-/* Ukuran Gambar Menu */
 .menu-img {
-    width: 70px;
-    height: 70px;
-    object-fit: cover; /* Biar gambar tidak gepeng */
-    border-radius: 8px;
+    width: 75px;
+    height: 75px;
+    object-fit: cover; /* Biar gambar proporsional & tidak gepeng */
+    border-radius: 10px;
     margin-right: 15px;
 }
 
+.menu-info {
+    flex-grow: 1;
+}
+
 .menu-info h3 {
-    font-size: 16px;
-    margin: 0 0 5px 0;
-    color: #333;
+    font-size: 15px;
+    margin: 0 0 4px 0;
+    color: #2c3e50;
 }
 
 .menu-info .price {
     font-size: 14px;
     color: #e67e22;
-    font-weight: bold;
+    font-weight: 700;
     margin: 0 0 8px 0;
 }
 
-/* Tombol Tambah */
 .menu-info button {
     background-color: #27ae60;
     color: white;
     border: none;
-    padding: 5px 12px;
-    border-radius: 5px;
+    padding: 6px 14px;
+    border-radius: 6px;
     cursor: pointer;
     font-size: 12px;
-    font-weight: bold;
+    font-weight: 600;
+    transition: 0.2s;
 }
 
 .menu-info button:hover {
     background-color: #219653;
+}
+
+/* Bagian Keranjang */
+.cart-section {
+    background: #fdfefe;
+    border: 1px dashed #bdc3c7;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.cart-section h2 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.cart-items {
+    font-size: 13px;
+    min-height: 30px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.empty-cart {
+    color: #95a5a6;
+    font-style: italic;
+    margin: 0;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    font-weight: bold;
+    color: #2c3e50;
+    border-top: 1px solid #dfe6e9;
+    padding-top: 8px;
+}
+
+#total-harga {
+    color: #e67e22;
+}
+
+/* Tombol Aksi Bawah */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-clear {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    flex: 1;
+    transition: 0.2s;
+}
+
+.btn-clear:hover {
+    background-color: #c0392b;
+}
+
+.btn-wa {
+    background-color: #25d366;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    flex: 2;
+    transition: 0.2s;
+}
+
+.btn-wa:hover {
+    background-color: #1ebe5d;
 }
