@@ -1,94 +1,253 @@
-// Array untuk menyimpan daftar item di keranjang
-let pesanan = [];
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warung Bu Nana - Pemesanan Online</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
 
-// Fungsi untuk menambah menu ke keranjang
-function tambahPesanan(namaMenu, hargaMenu) {
-    let itemAda = pesanan.find(item => item.nama === namaMenu);
-    
-    if (itemAda) {
-        itemAda.jumlah += 1;
-    } else {
-        pesanan.push({
-            nama: namaMenu,
-            harga: hargaMenu,
-            jumlah: 1
-        });
-    }
-    
-    tampilkanPesanan();
-}
+    <div class="container">
+        <!-- Header Utama -->
+        <div class="header">
+            <h1>Warung Bu Nana</h1>
+            <p class="subtitle">SILAKAN PILIH MAKANAN & MINUMAN FAVORIT KAMU</p>
+        </div>
 
-// Fungsi untuk menampilkan daftar pesanan di keranjang web
-function tampilkanPesanan() {
-    let daftarPesananDiv = document.getElementById('daftar-pesanan');
-    let totalHargaSpan = document.getElementById('total-harga');
-    
-    if (!daftarPesananDiv) return;
-    
-    if (pesanan.length === 0) {
-        daftarPesananDiv.innerHTML = '<p class="empty-cart">Belum ada menu yang dipilih.</p>';
-        totalHargaSpan.innerText = 'Rp0';
-        return;
-    }
-    
-    daftarPesananDiv.innerHTML = '';
-    let totalKeseluruhan = 0;
-    
-    pesanan.forEach((item, index) => {
-        let subtotal = item.harga * item.jumlah;
-        totalKeseluruhan += subtotal;
-        
-        daftarPesananDiv.innerHTML += `
-            <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 13px; border-bottom: 1px solid #f1f2f6; padding-bottom: 4px;">
-                <span>${index + 1}. ${item.nama} (x${item.jumlah})</span>
-                <span style="font-weight: 600;">Rp${subtotal.toLocaleString('id-ID')}</span>
+        <!-- Input Nomor Meja -->
+        <div class="form-group">
+            <label for="nomor-meja">Nomor Meja / Keterangan:</label>
+            <input type="text" id="nomor-meja" placeholder="Contoh: Meja 05 atau Dibungkus">
+        </div>
+
+        <!-- ================= KATEGORI MAKANAN ================= -->
+        <h2 class="section-title">🍽️ MAKANAN</h2>
+        <div class="menu-grid">
+            
+            <!-- Lotek -->
+            <div class="grid-card">
+                <img src="images/lotek.jpg" alt="Lotek" class="card-img">
+                <div class="card-body">
+                    <h3>LOTEK</h3>
+                    <p class="price">RP 13.000</p>
+                    <button onclick="tambahPesanan('Lotek', 13000)">+ Tambah</button>
+                </div>
             </div>
-        `;
-    });
-    
-    totalHargaSpan.innerText = Rp${totalKeseluruhan.toLocaleString('id-ID')};
-}
 
-// Fungsi untuk mengosongkan keranjang
-function kosongkanPesanan() {
-    pesanan = [];
-    tampilkanPesanan();
-}
+            <!-- Kupat Tahu -->
+            <div class="grid-card">
+                <img src="images/kupat-tahu.jpg" alt="Kupat Tahu" class="card-img">
+                <div class="card-body">
+                    <h3>KUPAT TAHU</h3>
+                    <p class="price">RP 13.000</p>
+                    <button onclick="tambahPesanan('Kupat Tahu', 13000)">+ Tambah</button>
+                </div>
+            </div>
 
-// Fungsi untuk mengirim pesanan ke WhatsApp
-function kirimKeWhatsApp() {
-    if (pesanan.length === 0) {
-        alert("Keranjang pesanan masih kosong, silakan pilih menu terlebih dahulu!");
-        return;
-    }
-    
-    let nomorMeja = document.getElementById('nomor-meja').value.trim();
-    if (nomorMeja === "") {
-        nomorMeja = "Tanpa Meja / Dibungkus";
-    }
-    
-    let catatan = document.getElementById('catatan').value.trim();
-    if (catatan === "") {
-        catatan = "-";
-    }
-    
-    // Ganti dengan nomor WhatsApp Bu Nana (format 62...)
-    let nomorWA = "628xxxxxxxxxx"; 
-    
-    let pesan = Halo Bu Nana, saya ingin memesan:\n;
-    pesan += Nomor Meja: ${nomorMeja}\n\n;
-    
-    let totalKeseluruhan = 0;
-    pesanan.forEach((item, index) => {
-        let subtotal = item.harga * item.jumlah;
-        totalKeseluruhan += subtotal;
-        pesan += ${index + 1}. ${item.nama} x${item.jumlah} = Rp${subtotal.toLocaleString('id-ID')}\n;
-    });
-    
-    pesan += \nTotal Keseluruhan: Rp${totalKeseluruhan.toLocaleString('id-ID')}\n;
-    pesan += Catatan: ${catatan}\n\n;
-    pesan += Mohon segera diproses ya, terima kasih!;
-    
-    let urlWA = https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)};
-    window.open(urlWA, '_blank');
-}
+            <!-- Nasi Ayam Geprek -->
+            <div class="grid-card">
+                <img src="images/ayam-geprek.jpg" alt="Nasi Ayam Geprek" class="card-img">
+                <div class="card-body">
+                    <h3>NASI AYAM GEPREK</h3>
+                    <p class="price">RP 13.000</p>
+                    <button onclick="tambahPesanan('Nasi Ayam Geprek', 13000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <!-- Nasi Goreng -->
+            <div class="grid-card">
+                <img src="images/nasi-goreng.jpg" alt="Nasi Goreng" class="card-img">
+                <div class="card-body">
+                    <h3>NASI GORENG</h3>
+                    <p class="price">RP 13.000</p>
+                    <button onclick="tambahPesanan('Nasi Goreng', 13000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <!-- Nasi Telur -->
+            <div class="grid-card">
+                <img src="images/nasi-telur.jpg" alt="Nasi Telur" class="card-img">
+                <div class="card-body">
+                    <h3>NASI TELUR</h3>
+                    <p class="price">RP 13.000</p>
+                    <button onclick="tambahPesanan('Nasi Telur', 13000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <!-- IndTel Goreng -->
+            <div class="grid-card">
+                <img src="images/indtel-goreng.jpg" alt="IndTel Goreng" class="card-img">
+                <div class="card-body">
+                    <h3>INDTEL GORENG</h3>
+                    <p class="price">RP 13.000</p>
+                    <button onclick="tambahPesanan('IndTel Goreng', 13000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <!-- IndTel Rebus -->
+            <div class="grid-card">
+                <img src="images/indtel-rebus.jpg" alt="IndTel Rebus" class="card-img">
+                <div class="card-body">
+                    <h3>INDTEL REBUS</h3>
+                    <p class="price">RP 13.000</p>
+                    <button onclick="tambahPesanan('IndTel Rebus', 13000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <!-- Soto -->
+            <div class="grid-card">
+                <img src="images/soto.jpg" alt="Soto" class="card-img">
+                <div class="card-body">
+                    <h3>SOTO</h3>
+                    <p class="price">RP 10.000</p>
+                    <button onclick="tambahPesanan('Soto', 10000)">+ Tambah</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ================= KATEGORI MINUMAN ================= -->
+        <h2 class="section-title">🥤 MINUMAN</h2>
+        <div class="menu-grid">
+
+            <div class="grid-card">
+                <img src="images/es-teh.jpg" alt="Es Teh" class="card-img">
+                <div class="card-body">
+                    <h3>ES TEH</h3>
+                    <p class="price">RP 3.000</p>
+                    <button onclick="tambahPesanan('Es Teh', 3000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <div class="grid-card">
+                <img src="images/lemon-tea.jpg" alt="Lemon Tea" class="card-img">
+                <div class="card-body">
+                    <h3>LEMON TEA</h3>
+                    <p class="price">RP 4.000</p>
+                    <button onclick="tambahPesanan('Lemon Tea', 4000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <div class="grid-card">
+                <img src="images/es-jeruk.jpg" alt="Es Jeruk" class="card-img">
+                <div class="card-body">
+                    <h3>ES JERUK</h3>
+                    <p class="price">RP 4.000</p>
+                    <button onclick="tambahPesanan('Es Jeruk', 4000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <div class="grid-card">
+                <img src="images/nutrisari.jpg" alt="Nutrisari" class="card-img">
+                <div class="card-body">
+                    <h3>NUTRISARI</h3>
+                    <p class="price">RP 4.000</p>
+                    <button onclick="tambahPesanan('Nutrisari', 4000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <div class="grid-card">
+                <img src="images/kopi-hitam.jpg" alt="Kopi Hitam" class="card-img">
+                <div class="card-body">
+                    <h3>KOPI HITAM</h3>
+                    <p class="price">RP 5.000</p>
+                    <button onclick="tambahPesanan('Kopi Hitam', 5000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <div class="grid-card">
+                <img src="images/good-day.jpg" alt="Good Day" class="card-img">
+                <div class="card-body">
+                    <h3>GOOD DAY</h3>
+                    <p class="price">RP 5.000</p>
+                    <button onclick="tambahPesanan('Good Day', 5000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <div class="grid-card">
+                <img src="images/chocolatos.jpg" alt="Chocolatos" class="card-img">
+                <div class="card-body">
+                    <h3>CHOCOLATOS</h3>
+                    <p class="price">RP 5.000</p>
+                    <button onclick="tambahPesanan('Chocolatos', 5000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <div class="grid-card">
+                <img src="images/milo.jpg" alt="Milo" class="card-img">
+                <div class="card-body">
+                    <h3>MILO</h3>
+                    <p class="price">RP 5.000</p>
+                    <button onclick="tambahPesanan('Milo', 5000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <div class="grid-card">
+                <img src="images/beng-beng.jpg" alt="Beng Beng" class="card-img">
+                <div class="card-body">
+                    <h3>BENG BENG</h3>
+                    <p class="price">RP 5.000</p>
+                    <button onclick="tambahPesanan('Beng Beng', 5000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <div class="grid-card">
+                <img src="images/teh-tarik.jpg" alt="Teh Tarik" class="card-img">
+                <div class="card-body">
+                    <h3>TEH TARIK</h3>
+                    <p class="price">RP 5.000</p>
+                    <button onclick="tambahPesanan('Teh Tarik', 5000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <div class="grid-card">
+                <img src="images/jossua.jpg" alt="JosSua" class="card-img">
+                <div class="card-body">
+                    <h3>JOSSUA</h3>
+                    <p class="price">RP 7.000</p>
+                    <button onclick="tambahPesanan('JosSua', 7000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <div class="grid-card">
+                <img src="images/dancow.jpg" alt="Dancow Coklat / Putih" class="card-img">
+                <div class="card-body">
+                    <h3>DANCOW COKLAT & PUTIH</h3>
+                    <p class="price">RP 7.000</p>
+                    <button onclick="tambahPesanan('Dancow Coklat & Putih', 7000)">+ Tambah</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ================= KERANJANG PESANAN ================= -->
+        <div class="cart-section">
+            <h2>🛒 Keranjang Pesanan Anda</h2>
+            <div id="daftar-pesanan" class="cart-items">
+                <p class="empty-cart">Belum ada menu yang dipilih.</p>
+            </div>
+            
+            <div class="cart-total">
+                <span>Total Keseluruhan:</span>
+                <span id="total-harga">Rp0</span>
+            </div>
+        </div>
+
+        <!-- Input Catatan -->
+        <div class="form-group">
+            <label for="catatan">Catatan Pesanan (Opsional):</label>
+            <input type="text" id="catatan" placeholder="Contoh: Pedas sedang, tanpa seledri">
+        </div>
+
+        <!-- Tombol Aksi -->
+        <div class="action-buttons">
+            <button class="btn-clear" onclick="kosongkanPesanan()">Kosongkan</button>
+            <button class="btn-wa" onclick="kirimKeWhatsApp()">Kirim Pesanan ke WhatsApp 📱</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
