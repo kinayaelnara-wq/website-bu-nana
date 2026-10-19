@@ -40,7 +40,7 @@ const dataMinuman = [
   {
     nama: "Es Jeruk",
     harga: 4000,
-    gambar: "https://images.unsplash.com/photo-1613478223719-2ab802602423?w=700"
+    gambar: "https://images.unsplash.com/photo-1613478223719-2ab802602423?w=800"
   }
 ];
 
