@@ -1,7 +1,5 @@
-// Array untuk menyimpan daftar item di keranjang
 let pesanan = [];
 
-// Fungsi untuk menambah menu ke keranjang
 function tambahPesanan(namaMenu, hargaMenu) {
     let itemAda = pesanan.find(item => item.nama === namaMenu);
     
@@ -18,7 +16,6 @@ function tambahPesanan(namaMenu, hargaMenu) {
     tampilkanPesanan();
 }
 
-// Fungsi untuk menampilkan daftar pesanan di keranjang web
 function tampilkanPesanan() {
     let daftarPesananDiv = document.getElementById('daftar-pesanan');
     let totalHargaSpan = document.getElementById('total-harga');
@@ -49,13 +46,11 @@ function tampilkanPesanan() {
     totalHargaSpan.innerText = Rp${totalKeseluruhan.toLocaleString('id-ID')};
 }
 
-// Fungsi untuk mengosongkan keranjang
 function kosongkanPesanan() {
     pesanan = [];
     tampilkanPesanan();
 }
 
-// Fungsi untuk mengirim pesanan ke WhatsApp
 function kirimKeWhatsApp() {
     if (pesanan.length === 0) {
         alert("Keranjang pesanan masih kosong, silakan pilih menu terlebih dahulu!");
