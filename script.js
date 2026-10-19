@@ -1,9 +1,8 @@
-// Array untuk menyimpan daftar pesanan sementara di keranjang
+// Array untuk menyimpan daftar item yang dipilih di keranjang
 let pesanan = [];
 
 // Fungsi untuk menambah menu ke keranjang
 function tambahPesanan(namaMenu, hargaMenu) {
-    // Cek apakah menu yang sama sudah ada di keranjang
     let itemAda = pesanan.find(item => item.nama === namaMenu);
     
     if (itemAda) {
@@ -16,17 +15,21 @@ function tambahPesanan(namaMenu, hargaMenu) {
         });
     }
     
-    // Perbarui tampilan ringkasan pesanan di layar
     tampilkanPesanan();
 }
 
-// Fungsi untuk menampilkan daftar pesanan di halaman web
+// Fungsi untuk memperbarui tampilan daftar pesanan di keranjang web
 function tampilkanPesanan() {
     let daftarPesananDiv = document.getElementById('daftar-pesanan');
     let totalHargaSpan = document.getElementById('total-harga');
     
-    // Kalau elemen penampungnya belum ada di HTML, lewati
     if (!daftarPesananDiv) return;
+    
+    if (pesanan.length === 0) {
+        daftarPesananDiv.innerHTML = '<p class="empty-cart">Belum ada menu yang dipilih.</p>';
+        totalHargaSpan.innerText = 'Rp0';
+        return;
+    }
     
     daftarPesananDiv.innerHTML = '';
     let totalKeseluruhan = 0;
@@ -35,20 +38,16 @@ function tampilkanPesanan() {
         let subtotal = item.harga * item.jumlah;
         totalKeseluruhan += subtotal;
         
-        // Buat elemen teks untuk setiap item di keranjang
-        let itemElement = document.div;
+        // Tampilkan baris item di keranjang
         daftarPesananDiv.innerHTML += `
-            <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 13px; border-bottom: 1px solid #f1f2f6; padding-bottom: 4px;">
                 <span>${index + 1}. ${item.nama} (x${item.jumlah})</span>
-                <span>Rp${subtotal.toLocaleString('id-ID')}</span>
+                <span style="font-weight: 600;">Rp${subtotal.toLocaleString('id-ID')}</span>
             </div>
         `;
     });
     
-    // Tampilkan total harga keseluruhan
-    if (totalHargaSpan) {
-        totalHargaSpan.innerText = Rp${totalKeseluruhan.toLocaleString('id-ID')};
-    }
+    totalHargaSpan.innerText = Rp${totalKeseluruhan.toLocaleString('id-ID')};
 }
 
 // Fungsi untuk mengosongkan keranjang
@@ -57,18 +56,24 @@ function kosongkanPesanan() {
     tampilkanPesanan();
 }
 
-// Fungsi untuk mengirim pesanan ke WhatsApp Bu Nana
+// Fungsi untuk mengirim pesanan terstruktur ke WhatsApp Bu Nana
 function kirimKeWhatsApp() {
     if (pesanan.length === 0) {
         alert("Keranjang pesanan masih kosong, silakan pilih menu terlebih dahulu!");
         return;
     }
     
-    // Ambil data nomor meja dan catatan dari input HTML
-    let nomorMeja = document.getElementById('nomor-meja') ? document.getElementById('nomor-meja').value : 'Tanpa Meja';
-    let catatan = document.getElementById('catatan') ? document.getElementById('catatan').value : '-';
+    let nomorMeja = document.getElementById('nomor-meja').value.trim();
+    if (nomorMeja === "") {
+        nomorMeja = "Tanpa Meja / Dibungkus";
+    }
     
-    // Nomor WhatsApp Bu Nana (Ganti dengan nomor aslinya, format pakai 62 tanpa angka 0 di depan)
+    let catatan = document.getElementById('catatan').value.trim();
+    if (catatan === "") {
+        catatan = "-";
+    }
+    
+    // Masukkan nomor WhatsApp tujuan (Ganti angka di bawah dengan nomor WhatsApp Bu Nana, format 62...)
     let nomorWA = "628xxxxxxxxxx"; 
     
     let pesan = Halo Bu Nana, saya ingin memesan:\n;
@@ -85,9 +90,6 @@ function kirimKeWhatsApp() {
     pesan += Catatan: ${catatan}\n\n;
     pesan += Mohon segera diproses ya, terima kasih!;
     
-    // Encode teks agar aman dibaca oleh URL WhatsApp
     let urlWA = https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)};
-    
-    // Buka WhatsApp di tab/aplikasi baru
     window.open(urlWA, '_blank');
 }
