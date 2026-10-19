@@ -2,22 +2,22 @@ const dataMakanan = [
   {
     nama: "Lotek",
     harga: 4000,
-    gambar: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500"
+    gambar: "https://commons.wikimedia.org/wiki/Special:FilePath/Lotek%20Indonesian%20food.jpg"
   },
   {
     nama: "Kupat Tahu",
     harga: 5000,
-    gambar: "https://images.unsplash.com/photo-1547592180-85f173990554?w=500"
+    gambar: "https://warna-cloudinary.b-cdn.net/ungu/opt-e6b9188ef9eef687f520c53a691068c8.jpg"
   },
   {
     nama: "Gado-Gado",
     harga: 5000,
-    gambar: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500"
+    gambar: "https://awsimages.detik.net.id/community/media/visual/2024/02/14/resep-gado-gado-siram.jpeg?w=1200"
   },
   {
     nama: "Soto Ayam",
     harga: 10000,
-    gambar: "https://images.unsplash.com/photo-1547592180-85f173990554?w=500"
+    gambar: "https://rricoid-assets.obs.ap-southeast-4.myhuaweicloud.com/berita/Singaraja/o/1734748970752-media_1617781998_0/kfs6xnou4g6nosx.jpeg"
   }
 ];
 
@@ -25,22 +25,22 @@ const dataMinuman = [
   {
     nama: "Es Teh",
     harga: 3000,
-    gambar: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500"
+    gambar: "https://tribratanews.polri.go.id/web/image/blog.post/91984/image"
   },
   {
     nama: "Lemon Tea",
     harga: 4000,
-    gambar: "https://images.unsplash.com/photo-1513558161293-cdaf765edfd7?w=500"
+    gambar: "https://images.unsplash.com/photo-1513558161293-cdaf765edfd7?w=700"
   },
   {
     nama: "Soda Gembira",
     harga: 5000,
-    gambar: "https://images.unsplash.com/photo-1513558161293-cdaf765edfd7?w=500"
+    gambar: "https://images.unsplash.com/photo-1513558161293-cdaf765edfd7?w=700"
   },
   {
     nama: "Es Jeruk",
     harga: 4000,
-    gambar: "https://images.unsplash.com/photo-1513558161293-cdaf765edfd7?w=500"
+    gambar: "https://images.unsplash.com/photo-1613478223719-2ab802602423?w=700"
   }
 ];
 
@@ -50,18 +50,17 @@ function rupiah(angka) {
   return "Rp" + angka.toLocaleString("id-ID");
 }
 
-// Menampilkan menu makanan dan minuman
 function tampilkanMenu(data, id) {
   const tempat = document.getElementById(id);
 
   if (!tempat) {
-    console.error("Bagian menu tidak ditemukan: " + id);
+    console.error("Elemen tidak ditemukan:", id);
     return;
   }
 
   tempat.replaceChildren();
 
-  data.forEach((item) => {
+  data.forEach(item => {
     const kartu = document.createElement("div");
     kartu.className = "card";
 
@@ -71,9 +70,7 @@ function tampilkanMenu(data, id) {
     gambar.alt = item.nama;
     gambar.loading = "lazy";
 
-    // Jika gambar gagal dimuat
     gambar.onerror = function () {
-      this.alt = "Gambar " + item.nama + " tidak tersedia";
       this.style.display = "none";
     };
 
@@ -85,19 +82,15 @@ function tampilkanMenu(data, id) {
     harga.textContent = rupiah(item.harga);
 
     const tombol = document.createElement("button");
-    tombol.type = "button";
     tombol.textContent = "+ Tambah";
-
-    tombol.addEventListener("click", function () {
-      tambah(item);
-    });
+    tombol.type = "button";
+    tombol.onclick = () => tambah(item);
 
     kartu.append(gambar, nama, harga, tombol);
     tempat.appendChild(kartu);
   });
 }
 
-// Menambahkan menu ke keranjang
 function tambah(item) {
   if (!keranjang[item.nama]) {
     keranjang[item.nama] = {
@@ -110,16 +103,10 @@ function tambah(item) {
   perbaruiKeranjang();
 }
 
-// Menghitung dan menampilkan keranjang
 function perbaruiKeranjang() {
   const daftar = document.getElementById("daftar-pesanan");
-  const elemenJumlah = document.getElementById("jumlah");
-  const elemenTotal = document.getElementById("total");
-
-  if (!daftar || !elemenJumlah || !elemenTotal) {
-    console.error("Elemen keranjang tidak ditemukan di HTML.");
-    return;
-  }
+  const jumlahEl = document.getElementById("jumlah");
+  const totalEl = document.getElementById("total");
 
   daftar.replaceChildren();
 
@@ -130,7 +117,6 @@ function perbaruiKeranjang() {
     if (item.jumlah <= 0) return;
 
     const subtotal = item.harga * item.jumlah;
-
     total += subtotal;
     jumlahBarang += item.jumlah;
 
@@ -140,22 +126,21 @@ function perbaruiKeranjang() {
     keterangan.textContent =
       ${nama} x ${item.jumlah} = ${rupiah(subtotal)};
 
-    const tombolKurang = document.createElement("button");
-    tombolKurang.type = "button";
-    tombolKurang.textContent = "-";
-    tombolKurang.setAttribute("aria-label", "Kurangi " + nama);
+    const hapus = document.createElement("button");
+    hapus.textContent = "-";
+    hapus.type = "button";
 
-    tombolKurang.addEventListener("click", function () {
-      keranjang[nama].jumlah--;
+    hapus.onclick = () => {
+      item.jumlah--;
 
-      if (keranjang[nama].jumlah <= 0) {
+      if (item.jumlah <= 0) {
         delete keranjang[nama];
       }
 
       perbaruiKeranjang();
-    });
+    };
 
-    baris.append(keterangan, tombolKurang);
+    baris.append(keterangan, hapus);
     daftar.appendChild(baris);
   });
 
@@ -163,39 +148,38 @@ function perbaruiKeranjang() {
     daftar.textContent = "Belum ada pesanan.";
   }
 
-  elemenJumlah.textContent = jumlahBarang;
-  elemenTotal.textContent = rupiah(total);
+  jumlahEl.textContent = jumlahBarang;
+  totalEl.textContent = rupiah(total);
 }
 
-// Membuat ringkasan pesanan
 function pesan() {
-  const pesanan = Object.entries(keranjang).filter(
-    ([nama, item]) => item.jumlah > 0
-  );
+  const pesanan = Object.entries(keranjang)
+    .filter(([, item]) => item.jumlah > 0);
 
   if (pesanan.length === 0) {
     alert("Silakan pilih menu terlebih dahulu!");
     return;
   }
 
-  let pesanannya = "Pesanan Warung Bu Nana:\n";
+  let ringkasan = "Pesanan Warung Bu Nana:\n";
   let total = 0;
 
   pesanan.forEach(([nama, item]) => {
-    pesanannya += ${nama} x ${item.jumlah}\n;
+    ringkasan += ${nama} x ${item.jumlah}\n;
     total += item.harga * item.jumlah;
   });
 
-  pesanannya += \nTotal pembayaran: ${rupiah(total)};
-
-  alert(pesanannya);
+  ringkasan += \nTotal: ${rupiah(total)};
+  alert(ringkasan);
 }
 
-// Menjalankan website setelah HTML siap
 function mulaiWebsite() {
   tampilkanMenu(dataMakanan, "makanan");
   tampilkanMenu(dataMinuman, "minuman");
   perbaruiKeranjang();
+
+  const tombol = document.getElementById("tombol-pesan");
+  if (tombol) tombol.addEventListener("click", pesan);
 }
 
 if (document.readyState === "loading") {
