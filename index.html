@@ -3,98 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Warung Bu Nana</title>
-
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
-
 <body>
 
-  <!-- HEADER -->
   <header class="header">
     <h1>🍽️ Warung Bu Nana</h1>
     <p>Masakan enak, harga bersahabat!</p>
   </header>
 
-  <!-- MENU NAVIGASI -->
   <nav class="navbar">
     <a href="#beranda">Beranda</a>
     <a href="#makanan-section">Makanan</a>
     <a href="#minuman-section">Minuman</a>
     <a href="#pesanan">Pesanan</a>
-    <a href="#tentang">Tentang</a>
   </nav>
 
-  <!-- BERANDA -->
   <section class="hero" id="beranda">
-    <div class="hero-content">
-      <h2>Selamat Datang di Warung Bu Nana</h2>
-      <p>Nikmati makanan dan minuman favoritmu.</p>
-      <a class="tombol-utama" href="#makanan-section">
-        Lihat Menu
-      </a>
-    </div>
+    <h2>Selamat Datang di Warung Bu Nana</h2>
+    <p>Nikmati makanan dan minuman favoritmu.</p>
+    <a href="#makanan-section" class="tombol-utama">Lihat Menu</a>
   </section>
 
-  <!-- MENU MAKANAN -->
   <main>
     <section class="bagian-menu" id="makanan-section">
       <h2>Menu Makanan</h2>
       <p class="deskripsi">Pilihan makanan lezat untukmu.</p>
-
       <div id="makanan" class="menu-container"></div>
     </section>
 
-    <!-- MENU MINUMAN -->
     <section class="bagian-menu" id="minuman-section">
       <h2>Menu Minuman</h2>
       <p class="deskripsi">Minuman segar untuk menemani makanmu.</p>
-
       <div id="minuman" class="menu-container"></div>
     </section>
 
-    <!-- KERANJANG -->
     <section class="bagian-pesanan" id="pesanan">
       <h2>🛒 Keranjang Pesanan</h2>
-
       <p>Jumlah barang: <span id="jumlah">0</span></p>
-
-      <div id="daftar-pesanan">
-        Belum ada pesanan.
-      </div>
-
-      <div class="total-harga">
-        Total: <span id="total">Rp0</span>
-      </div>
-
-      <button
-        type="button"
-        class="tombol-pesan"
-        onclick="pesan()"
-      >
+      <div id="daftar-pesanan">Belum ada pesanan.</div>
+      <h3>Total: <span id="total">Rp0</span></h3>
+      <button id="tombol-pesan" class="tombol-pesan">
         Buat Pesanan
       </button>
     </section>
 
-    <!-- TENTANG -->
-    <section class="tentang" id="tentang">
+    <section class="tentang">
       <h2>Tentang Warung Bu Nana</h2>
-      <p>
-        Warung Bu Nana menyediakan berbagai pilihan makanan
-        dan minuman dengan harga terjangkau.
-        Pilih menu favoritmu dan lihat total pesananmu.
-      </p>
+      <p>Menyediakan makanan dan minuman dengan harga terjangkau.</p>
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer class="footer">
-    <p>&copy; 2026 Warung Bu Nana. Semua hak dilindungi.</p>
+    <p>&copy; 2026 Warung Bu Nana</p>
   </footer>
-
-  <!-- JAVASCRIPT -->
-  <script src="script.js"></script>
 
 </body>
 </html>
