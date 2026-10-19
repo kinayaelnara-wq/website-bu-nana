@@ -1,4 +1,4 @@
-// Array untuk menyimpan daftar item yang dipilih di keranjang
+// Array untuk menyimpan daftar item di keranjang
 let pesanan = [];
 
 // Fungsi untuk menambah menu ke keranjang
@@ -18,7 +18,7 @@ function tambahPesanan(namaMenu, hargaMenu) {
     tampilkanPesanan();
 }
 
-// Fungsi untuk memperbarui tampilan daftar pesanan di keranjang web
+// Fungsi untuk menampilkan daftar pesanan di keranjang web
 function tampilkanPesanan() {
     let daftarPesananDiv = document.getElementById('daftar-pesanan');
     let totalHargaSpan = document.getElementById('total-harga');
@@ -38,7 +38,6 @@ function tampilkanPesanan() {
         let subtotal = item.harga * item.jumlah;
         totalKeseluruhan += subtotal;
         
-        // Tampilkan baris item di keranjang
         daftarPesananDiv.innerHTML += `
             <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 13px; border-bottom: 1px solid #f1f2f6; padding-bottom: 4px;">
                 <span>${index + 1}. ${item.nama} (x${item.jumlah})</span>
@@ -56,7 +55,7 @@ function kosongkanPesanan() {
     tampilkanPesanan();
 }
 
-// Fungsi untuk mengirim pesanan terstruktur ke WhatsApp Bu Nana
+// Fungsi untuk mengirim pesanan ke WhatsApp
 function kirimKeWhatsApp() {
     if (pesanan.length === 0) {
         alert("Keranjang pesanan masih kosong, silakan pilih menu terlebih dahulu!");
@@ -73,7 +72,7 @@ function kirimKeWhatsApp() {
         catatan = "-";
     }
     
-    // Masukkan nomor WhatsApp tujuan (Ganti angka di bawah dengan nomor WhatsApp Bu Nana, format 62...)
+    // Ganti dengan nomor WhatsApp Bu Nana (format 62...)
     let nomorWA = "628xxxxxxxxxx"; 
     
     let pesan = Halo Bu Nana, saya ingin memesan:\n;
