@@ -1,12 +1,13 @@
-/* Tampilan Dasar Website Modern */
+/* Styling Dasar & Google Fonts */
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f8f9fa;
     margin: 0;
     padding: 15px;
-    color: #333;
+    color: #333333;
 }
 
+/* Container Utama */
 .container {
     max-width: 500px;
     margin: 0 auto;
@@ -16,7 +17,7 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-/* Header */
+/* Header Toko */
 .header {
     text-align: center;
     margin-bottom: 20px;
@@ -29,7 +30,7 @@ body {
 }
 
 .header p {
-    font-size: 14px;
+    font-size: 13px;
     color: #7f8c8d;
     margin: 0;
 }
@@ -63,9 +64,20 @@ body {
     box-shadow: 0 0 5px rgba(39, 174, 96, 0.2);
 }
 
-/* Desain Kartu Menu (Menu Cards) */
+/* Judul Kategori (Makanan & Minuman) */
+.category-title {
+    font-size: 17px;
+    color: #16a085;
+    margin-top: 25px;
+    margin-bottom: 12px;
+    border-bottom: 2px solid #27ae60;
+    padding-bottom: 6px;
+    font-weight: 700;
+}
+
+/* Desain Kartu Menu (Menu Card) */
 .menu-list {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .menu-item {
@@ -88,7 +100,7 @@ body {
 .menu-img {
     width: 75px;
     height: 75px;
-    object-fit: cover; /* Biar gambar proporsional & tidak gepeng */
+    object-fit: cover; /* Biar gambar tidak gepeng */
     border-radius: 10px;
     margin-right: 15px;
 }
@@ -126,12 +138,13 @@ body {
     background-color: #219653;
 }
 
-/* Bagian Keranjang */
+/* Bagian Keranjang Pesanan */
 .cart-section {
     background: #fdfefe;
     border: 1px dashed #bdc3c7;
     padding: 15px;
     border-radius: 12px;
+    margin-top: 25px;
     margin-bottom: 15px;
 }
 
@@ -146,7 +159,7 @@ body {
     font-size: 13px;
     min-height: 30px;
     margin-bottom: 10px;
-    color: #555;
+    color: #555555;
 }
 
 .empty-cart {
