@@ -15,7 +15,7 @@ const dataMakanan = [
     gambar: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500"
   },
   {
-    nama: "Soto",
+    nama: "Soto Ayam",
     harga: 10000,
     gambar: "https://images.unsplash.com/photo-1547592180-85f173990554?w=500"
   }
@@ -50,11 +50,12 @@ function rupiah(angka) {
   return "Rp" + angka.toLocaleString("id-ID");
 }
 
+// Menampilkan menu makanan dan minuman
 function tampilkanMenu(data, id) {
   const tempat = document.getElementById(id);
 
   if (!tempat) {
-    console.error("Elemen tidak ditemukan:", id);
+    console.error("Bagian menu tidak ditemukan: " + id);
     return;
   }
 
@@ -70,6 +71,12 @@ function tampilkanMenu(data, id) {
     gambar.alt = item.nama;
     gambar.loading = "lazy";
 
+    // Jika gambar gagal dimuat
+    gambar.onerror = function () {
+      this.alt = "Gambar " + item.nama + " tidak tersedia";
+      this.style.display = "none";
+    };
+
     const nama = document.createElement("h3");
     nama.textContent = item.nama;
 
@@ -78,15 +85,19 @@ function tampilkanMenu(data, id) {
     harga.textContent = rupiah(item.harga);
 
     const tombol = document.createElement("button");
-    tombol.textContent = "+ Tambah";
     tombol.type = "button";
-    tombol.onclick = () => tambah(item);
+    tombol.textContent = "+ Tambah";
+
+    tombol.addEventListener("click", function () {
+      tambah(item);
+    });
 
     kartu.append(gambar, nama, harga, tombol);
     tempat.appendChild(kartu);
   });
 }
 
+// Menambahkan menu ke keranjang
 function tambah(item) {
   if (!keranjang[item.nama]) {
     keranjang[item.nama] = {
@@ -99,13 +110,14 @@ function tambah(item) {
   perbaruiKeranjang();
 }
 
+// Menghitung dan menampilkan keranjang
 function perbaruiKeranjang() {
   const daftar = document.getElementById("daftar-pesanan");
   const elemenJumlah = document.getElementById("jumlah");
   const elemenTotal = document.getElementById("total");
 
   if (!daftar || !elemenJumlah || !elemenTotal) {
-    console.error("Elemen keranjang tidak ditemukan.");
+    console.error("Elemen keranjang tidak ditemukan di HTML.");
     return;
   }
 
@@ -118,6 +130,7 @@ function perbaruiKeranjang() {
     if (item.jumlah <= 0) return;
 
     const subtotal = item.harga * item.jumlah;
+
     total += subtotal;
     jumlahBarang += item.jumlah;
 
@@ -127,20 +140,22 @@ function perbaruiKeranjang() {
     keterangan.textContent =
       ${nama} x ${item.jumlah} = ${rupiah(subtotal)};
 
-    const hapus = document.createElement("button");
-    hapus.type = "button";
-    hapus.textContent = "-";
-    hapus.onclick = () => {
-      item.jumlah--;
+    const tombolKurang = document.createElement("button");
+    tombolKurang.type = "button";
+    tombolKurang.textContent = "-";
+    tombolKurang.setAttribute("aria-label", "Kurangi " + nama);
 
-      if (item.jumlah <= 0) {
+    tombolKurang.addEventListener("click", function () {
+      keranjang[nama].jumlah--;
+
+      if (keranjang[nama].jumlah <= 0) {
         delete keranjang[nama];
       }
 
       perbaruiKeranjang();
-    };
+    });
 
-    baris.append(keterangan, hapus);
+    baris.append(keterangan, tombolKurang);
     daftar.appendChild(baris);
   });
 
@@ -152,16 +167,18 @@ function perbaruiKeranjang() {
   elemenTotal.textContent = rupiah(total);
 }
 
+// Membuat ringkasan pesanan
 function pesan() {
-  const pesanan = Object.entries(keranjang)
-    .filter(([nama, item]) => item.jumlah > 0);
+  const pesanan = Object.entries(keranjang).filter(
+    ([nama, item]) => item.jumlah > 0
+  );
 
   if (pesanan.length === 0) {
     alert("Silakan pilih menu terlebih dahulu!");
     return;
   }
 
-  let pesanannya = "Pesanan Bu Nana:\n";
+  let pesanannya = "Pesanan Warung Bu Nana:\n";
   let total = 0;
 
   pesanan.forEach(([nama, item]) => {
@@ -169,11 +186,12 @@ function pesan() {
     total += item.harga * item.jumlah;
   });
 
-  pesanannya += \nTotal: ${rupiah(total)};
+  pesanannya += \nTotal pembayaran: ${rupiah(total)};
 
   alert(pesanannya);
 }
 
+// Menjalankan website setelah HTML siap
 function mulaiWebsite() {
   tampilkanMenu(dataMakanan, "makanan");
   tampilkanMenu(dataMinuman, "minuman");
