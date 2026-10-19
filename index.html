@@ -4,82 +4,237 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pemesanan - Lotek & Kupat Tahu Bu Nana</title>
-    <!-- Hubungkan ke file CSS -->
     <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts untuk tampilan modern -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div class="container">
-        <!-- Header Toko -->
+        <!-- Header -->
         <div class="header">
             <h1>Lotek & Kupat Tahu Bu Nana</h1>
-            <p>Silakan pilih menu favoritmu di bawah ini 👇</p>
+            <p>Rasa Sederhana, Nikmat Luar Biasa ✨</p>
         </div>
 
-        <!-- Input Nomor Meja / Keterangan -->
+        <!-- Input Nomor Meja -->
         <div class="form-group">
             <label for="nomor-meja">Nomor Meja / Keterangan:</label>
             <input type="text" id="nomor-meja" placeholder="Contoh: Meja 05 atau Dibungkus">
         </div>
 
-        <!-- Daftar Menu Makanan & Minuman (Sudah Pakai Gambar Real) -->
+        <!-- KATEGORI: MAKANAN -->
+        <h2 class="category-title">🍽️ Makanan</h2>
         <div class="menu-list">
             
-            <!-- Menu 1: Lotek -->
+            <!-- Lotek -->
             <div class="menu-item">
-                <img src="https://images.unsplash.com/photo-1626804475297-41608e074eb1?w=500&auto=format&fit=crop" alt="Lotek Spesial" class="menu-img">
+                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&auto=format&fit=crop" alt="Lotek" class="menu-img">
                 <div class="menu-info">
-                    <h3>Lotek Spesial</h3>
-                    <p class="price">Rp12.000</p>
-                    <button onclick="tambahPesanan('Lotek Spesial', 12000)">+ Tambah</button>
+                    <h3>Lotek</h3>
+                    <p class="price">Rp13.000</p>
+                    <button onclick="tambahPesanan('Lotek', 13000)">+ Tambah</button>
                 </div>
             </div>
 
-            <!-- Menu 2: Kupat Tahu -->
+            <!-- Kupat Tahu -->
             <div class="menu-item">
                 <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&auto=format&fit=crop" alt="Kupat Tahu" class="menu-img">
                 <div class="menu-info">
                     <h3>Kupat Tahu</h3>
+                    <p class="price">Rp13.000</p>
+                    <button onclick="tambahPesanan('Kupat Tahu', 13000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <!-- Nasi Ayam Geprek -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1626804475297-41608e074eb1?w=500&auto=format&fit=crop" alt="Nasi Ayam Geprek" class="menu-img">
+                <div class="menu-info">
+                    <h3>Nasi Ayam Geprek</h3>
+                    <p class="price">Rp13.000</p>
+                    <button onclick="tambahPesanan('Nasi Ayam Geprek', 13000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <!-- Nasi Goreng -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=500&auto=format&fit=crop" alt="Nasi Goreng" class="menu-img">
+                <div class="menu-info">
+                    <h3>Nasi Goreng</h3>
+                    <p class="price">Rp13.000</p>
+                    <button onclick="tambahPesanan('Nasi Goreng', 13000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <!-- Nasi Telor -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?w=500&auto=format&fit=crop" alt="Nasi Telor" class="menu-img">
+                <div class="menu-info">
+                    <h3>Nasi Telor</h3>
+                    <p class="price">Rp13.000</p>
+                    <button onclick="tambahPesanan('Nasi Telor', 13000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <!-- IndTel Goreng -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500&auto=format&fit=crop" alt="IndTel Goreng" class="menu-img">
+                <div class="menu-info">
+                    <h3>IndTel Goreng</h3>
+                    <p class="price">Rp13.000</p>
+                    <button onclick="tambahPesanan('IndTel Goreng', 13000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <!-- IndTel Rebus -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1594998893017-36147fcff401?w=500&auto=format&fit=crop" alt="IndTel Rebus" class="menu-img">
+                <div class="menu-info">
+                    <h3>IndTel Rebus</h3>
+                    <p class="price">Rp13.000</p>
+                    <button onclick="tambahPesanan('IndTel Rebus', 13000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <!-- Soto -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1572656631137-7935297eff55?w=500&auto=format&fit=crop" alt="Soto" class="menu-img">
+                <div class="menu-info">
+                    <h3>Soto</h3>
                     <p class="price">Rp10.000</p>
-                    <button onclick="tambahPesanan('Kupat Tahu', 10000)">+ Tambah</button>
-                </div>
-            </div>
-
-            <!-- Menu 3: Teh Tarik / Es Teh -->
-            <div class="menu-item">
-                <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500&auto=format&fit=crop" alt="Teh Tarik" class="menu-img">
-                <div class="menu-info">
-                    <h3>Teh Tarik Manis</h3>
-                    <p class="price">Rp5.000</p>
-                    <button onclick="tambahPesanan('Teh Tarik Manis', 5000)">+ Tambah</button>
-                </div>
-            </div>
-
-            <!-- Menu 4: Es Jeruk / Lemon Tea -->
-            <div class="menu-item">
-                <img src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=500&auto=format&fit=crop" alt="Es Jeruk" class="menu-img">
-                <div class="menu-info">
-                    <h3>Es Jeruk Segar</h3>
-                    <p class="price">Rp4.000</p>
-                    <button onclick="tambahPesanan('Es Jeruk Segar', 4000)">+ Tambah</button>
-                </div>
-            </div>
-
-            <!-- Menu 5: JosSua / Minuman Spesial -->
-            <div class="menu-item">
-                <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500&auto=format&fit=crop" alt="JosSua" class="menu-img">
-                <div class="menu-info">
-                    <h3>JosSua (Es Susu Soda)</h3>
-                    <p class="price">Rp6.000</p>
-                    <button onclick="tambahPesanan('JosSua', 6000)">+ Tambah</button>
+                    <button onclick="tambahPesanan('Soto', 10000)">+ Tambah</button>
                 </div>
             </div>
 
         </div>
 
-        <!-- Bagian Keranjang Pesanan -->
+        <!-- KATEGORI: MINUMAN -->
+        <h2 class="category-title">🥤 Minuman</h2>
+        <div class="menu-list">
+
+            <!-- Es Teh -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500&auto=format&fit=crop" alt="Es Teh" class="menu-img">
+                <div class="menu-info">
+                    <h3>Es Teh</h3>
+                    <p class="price">Rp3.000</p>
+                    <button onclick="tambahPesanan('Es Teh', 3000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <!-- LemonTea -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500&auto=format&fit=crop" alt="LemonTea" class="menu-img">
+                <div class="menu-info">
+                    <h3>LemonTea</h3>
+                    <p class="price">Rp4.000</p>
+                    <button onclick="tambahPesanan('LemonTea', 4000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <!-- Es Jeruk -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=500&auto=format&fit=crop" alt="Es Jeruk" class="menu-img">
+                <div class="menu-info">
+                    <h3>Es Jeruk</h3>
+                    <p class="price">Rp4.000</p>
+                    <button onclick="tambahPesanan('Es Jeruk', 4000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <!-- Nutrisari -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1534353473418-4cfa6c56fd38?w=500&auto=format&fit=crop" alt="Nutrisari" class="menu-img">
+                <div class="menu-info">
+                    <h3>Nutrisari</h3>
+                    <p class="price">Rp4.000</p>
+                    <button onclick="tambahPesanan('Nutrisari', 4000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <!-- Kopi Hitam -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&auto=format&fit=crop" alt="Kopi Hitam" class="menu-img">
+                <div class="menu-info">
+                    <h3>Kopi Hitam</h3>
+                    <p class="price">Rp5.000</p>
+                    <button onclick="tambahPesanan('Kopi Hitam', 5000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <!-- Gooday -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?w=500&auto=format&fit=crop" alt="Gooday" class="menu-img">
+                <div class="menu-info">
+                    <h3>Gooday</h3>
+                    <p class="price">Rp5.000</p>
+                    <button onclick="tambahPesanan('Gooday', 5000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <!-- Cocolatos -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=500&auto=format&fit=crop" alt="Cocolatos" class="menu-img">
+                <div class="menu-info">
+                    <h3>Cocolatos</h3>
+                    <p class="price">Rp5.000</p>
+                    <button onclick="tambahPesanan('Cocolatos', 5000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <!-- Milo -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&auto=format&fit=crop" alt="Milo" class="menu-img">
+                <div class="menu-info">
+                    <h3>Milo</h3>
+                    <p class="price">Rp5.000</p>
+                    <button onclick="tambahPesanan('Milo', 5000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <!-- Bengbeng -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500&auto=format&fit=crop" alt="Bengbeng" class="menu-img">
+                <div class="menu-info">
+                    <h3>Bengbeng</h3>
+                    <p class="price">Rp5.000</p>
+                    <button onclick="tambahPesanan('Bengbeng', 5000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <!-- Teh Tarik -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500&auto=format&fit=crop" alt="Teh Tarik" class="menu-img">
+                <div class="menu-info">
+                    <h3>Teh Tarik</h3>
+                    <p class="price">Rp5.000</p>
+                    <button onclick="tambahPesanan('Teh Tarik', 5000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <!-- JosSua -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500&auto=format&fit=crop" alt="JosSua" class="menu-img">
+                <div class="menu-info">
+                    <h3>JosSua</h3>
+                    <p class="price">Rp7.000</p>
+                    <button onclick="tambahPesanan('JosSua', 7000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <!-- Dancow Putih/Coklat -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1551106652-a5bcf4b29ab6?w=500&auto=format&fit=crop" alt="Dancow Putih/Coklat" class="menu-img">
+                <div class="menu-info">
+                    <h3>Dancow Putih/Coklat</h3>
+                    <p class="price">Rp7.000</p>
+                    <button onclick="tambahPesanan('Dancow Putih/Coklat', 7000)">+ Tambah</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Keranjang Pesanan -->
         <div class="cart-section">
             <h2>Keranjang Pesanan Anda</h2>
             <div id="daftar-pesanan" class="cart-items">
@@ -92,20 +247,19 @@
             </div>
         </div>
 
-        <!-- Catatan Tambahan -->
+        <!-- Catatan -->
         <div class="form-group">
             <label for="catatan">Catatan Pesanan (Opsional):</label>
-            <input type="text" id="catatan" placeholder="Contoh: Jangan pakai seledri, pedas sedang">
+            <input type="text" id="catatan" placeholder="Contoh: Jangan pakai seledri, es sedikit">
         </div>
 
         <!-- Tombol Aksi -->
         <div class="action-buttons">
-            <button class="btn-clear" onclick="kosongkanPesanan()">Kosongkan Pesanan</button>
-            <button class="btn-wa" onclick="kirimKeWhatsApp()">Kirim Pesanan ke WhatsApp 📱</button>
+            <button class="btn-clear" onclick="kosongkanPesanan()">Kosongkan</button>
+            <button class="btn-wa" onclick="kirimKeWhatsApp()">Kirim ke WhatsApp 📱</button>
         </div>
     </div>
 
-    <!-- Hubungkan ke file JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
