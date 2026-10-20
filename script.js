@@ -1,13 +1,13 @@
 // Data Menu Lengkap Bu Nana dengan Icon/Visual
 const makanan = [
-    { nama: "Lotek", harga: 13000, icon: "🥗" },
-    { nama: "Kupat Tahu", harga: 13000, icon: "🍲" },
-    { nama: "Nasi Ayam Geprek", harga: 13000, icon: "🍗" },
-    { nama: "Nasi Goreng", harga: 13000, icon: "🍛" },
-    { nama: "Nasi Telor", harga: 13000, icon: "🍳" },
-    { nama: "IndTel Goreng", harga: 13000, icon: "🍜" },
-    { nama: "IndTel Rebus", harga: 13000, icon: "🍜" },
-    { nama: "Soto", harga: 10000, icon: "🍲" }
+    { nama: "Lotek", harga: 13000, icon: "🥗", gambar: "gambar/lotek.jpg" },
+    { nama: "Kupat Tahu", harga: 13000, icon: "🍲", gambar: "gambar/kupat-tahu.jpg" },
+    { nama: "Nasi Ayam Geprek", harga: 13000, icon: "🍗", gambar: "gambar/nasi-ayam-geprek.jpg" },
+    { nama: "Nasi Goreng", harga: 13000, icon: "🍛", gambar: "gambar/nasi-goreng.jpg" },
+    { nama: "Nasi Telor", harga: 13000, icon: "🍳", gambar: "gambar/nasi-telor.jpg" },
+    { nama: "IndTel Goreng", harga: 13000, icon: "🍜", gambar: "gambar/indtel-goreng.jpg" },
+    { nama: "IndTel Rebus", harga: 13000, icon: "🍜", gambar: "gambar/indtel-rebus.jpg" },
+    { nama: "Soto", harga: 10000, icon: "🍲", gambar: "gambar/soto.jpg" }
 ];
 
 const minuman = [
@@ -54,7 +54,11 @@ function tampilkanMenu(daftar, idElemen) {
             extraHTML = '<select id="select-dancow" style="margin: 5px 0; padding: 3px; font-size: 12px;"><option value="Putih">Putih</option><option value="Coklat">Coklat</option></select>';
         }
 
-        card.innerHTML = '<div class="card-img-box"><span style="font-size: 42px;">' + item.icon + '</span></div>' +
+        card.innerHTML = '<div class="card-img-box">' +
+    (item.gambar
+        ? '<img src="' + item.gambar + '" alt="' + item.nama + '" style=style="width:100%; height:180px; object-fit:contain; display:block;">'
+        : '<span style="font-size:42px;">' + item.icon + '</span>') +
+    '</div>' +
             '<h4>' + item.nama + '</h4>' +
             '<p>Rp' + item.harga.toLocaleString('id-ID') + '</p>' +
             extraHTML +
@@ -150,7 +154,7 @@ function kirimKeWhatsApp() {
     }
 
     let nomorMeja = document.getElementById("nomorMeja") ? document.getElementById("nomorMeja").value : "Tanpa Meja";
-    let inputCatatan = document.getElementById("catatan");
+    let inputCatatan = document.getElementById("catatanPesanan");
     let catatan = inputCatatan ? inputCatatan.value : "";
     let nomorAdmin = "6281230139560"; // Nomor WhatsApp Bu Nana / Admin
 
